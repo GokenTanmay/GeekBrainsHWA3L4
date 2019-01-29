@@ -3,6 +3,7 @@ package com.example.rumpilstilstkin.lesson4.data;
 
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
 import com.example.rumpilstilstkin.lesson4.data.models.RepsModel;
+import com.example.rumpilstilstkin.lesson4.data.models.UserRep;
 
 import java.util.List;
 
@@ -21,4 +22,7 @@ public interface Endpoints {
 
     @GET("/repositories")
     Flowable<List<RepsModel>> getRepos();
+
+    @GET("/users/{user}/repos")
+    Flowable<List<UserRep>> getUserReps();
 }

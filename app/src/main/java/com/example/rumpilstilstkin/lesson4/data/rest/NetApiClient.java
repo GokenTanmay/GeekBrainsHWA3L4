@@ -3,6 +3,7 @@ package com.example.rumpilstilstkin.lesson4.data.rest;
 import com.example.rumpilstilstkin.lesson4.data.Endpoints;
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
 import com.example.rumpilstilstkin.lesson4.data.models.RepsModel;
+import com.example.rumpilstilstkin.lesson4.data.models.UserRep;
 
 import java.util.List;
 
@@ -32,6 +33,12 @@ public class NetApiClient {
 
     public Flowable<List<RepsModel>> getReps() {
         return netApi.getRepos()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    public Flowable<List<UserRep>> getUserReps(String user){
+        return netApi.getUserReps()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }
