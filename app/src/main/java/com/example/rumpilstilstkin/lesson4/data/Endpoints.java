@@ -24,5 +24,6 @@ public interface Endpoints {
     Flowable<List<RepsModel>> getRepos();
 
     @GET("/users/{user}/repos")
-    Flowable<List<UserRep>> getUserReps();
+    Flowable<List<UserRep>> getUserReps(
+            @Path("user") String user);
 }

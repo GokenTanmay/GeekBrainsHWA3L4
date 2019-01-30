@@ -2,6 +2,7 @@ package com.example.rumpilstilstkin.lesson4.ui.home;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -47,7 +48,8 @@ public class MainActivity extends MvpAppCompatActivity
     @OnClick(R.id.button)
     public void submit(View view) {
         userPresenter.loadDate();
-        userRepPresenter.loadDate("rumpilstilstkin");
+        Log.d("Dto", "submit: ");
+        userRepPresenter.loadData("rumpilstilstkin");
     }
 
     @Override

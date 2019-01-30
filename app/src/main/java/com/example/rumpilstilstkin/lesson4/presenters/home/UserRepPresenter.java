@@ -15,12 +15,13 @@ import java.util.List;
 public class UserRepPresenter extends MvpPresenter<UserRepView> implements Subscriber<List<UserRep>> {
     @Override
     public void onSubscribe(Subscription s) {
-
+        Log.d("Dto", "UserRepPresenter:onSubscribe: ");
+        s.request(Long.MAX_VALUE);
     }
 
     @Override
     public void onNext(List<UserRep> userRepList) {
-        Log.d("Dto", "onNext userRepList.size = " + userRepList.size());
+        Log.d("Dto", "UserRepPresenter:onNext:userRepList.size = " + userRepList.size());
     }
 
     @Override
@@ -33,7 +34,8 @@ public class UserRepPresenter extends MvpPresenter<UserRepView> implements Subsc
         Log.d("Dto", "onComplete: ");
     }
 
-    public void loadDate(String userName) {
+    public void loadData(String userName) {
+        Log.d("Dto", "UserRepPresenter:loadData: ");
         NetApiClient.getInstance().getUserReps(userName)
                 .subscribe(this);
     }

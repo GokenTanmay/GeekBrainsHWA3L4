@@ -1,5 +1,7 @@
 package com.example.rumpilstilstkin.lesson4.data.rest;
 
+import android.util.Log;
+
 import com.example.rumpilstilstkin.lesson4.data.Endpoints;
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
 import com.example.rumpilstilstkin.lesson4.data.models.RepsModel;
@@ -37,8 +39,9 @@ public class NetApiClient {
                 .subscribeOn(Schedulers.io());
     }
 
-    public Flowable<List<UserRep>> getUserReps(String user){
-        return netApi.getUserReps()
+    public Flowable<List<UserRep>> getUserReps(String userName){
+        Log.d("Dto", "NetApiClient:getUserReps: ");
+        return netApi.getUserReps(userName)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }
