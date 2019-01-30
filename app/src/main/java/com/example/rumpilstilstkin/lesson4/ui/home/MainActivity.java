@@ -2,6 +2,7 @@ package com.example.rumpilstilstkin.lesson4.ui.home;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -11,11 +12,16 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.rumpilstilstkin.lesson4.R;
+import com.example.rumpilstilstkin.lesson4.data.models.UserRep;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsPresenter;
 import com.example.rumpilstilstkin.lesson4.presenters.home.RepsView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserPresenter;
+import com.example.rumpilstilstkin.lesson4.presenters.home.UserRepPresenter;
+import com.example.rumpilstilstkin.lesson4.presenters.home.UserRepView;
 import com.example.rumpilstilstkin.lesson4.presenters.home.UserView;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,13 +29,16 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends MvpAppCompatActivity
-        implements UserView, RepsView {
+        implements UserView, RepsView, UserRepView {
 
     @InjectPresenter
-    UserPresenter presenter;
+    UserPresenter userPresenter;
 
     @InjectPresenter
     RepsPresenter repsPresenter;
+
+    @InjectPresenter
+    UserRepPresenter userRepPresenter;
 
     @BindView(R.id.avatar)  ImageView imageView;
     @BindView(R.id.username) TextView nameView;
@@ -38,7 +47,9 @@ public class MainActivity extends MvpAppCompatActivity
 
     @OnClick(R.id.button)
     public void submit(View view) {
-        presenter.loadDate();
+        userPresenter.loadDate();
+        Log.d("Dto", "submit: ");
+        userRepPresenter.loadData("rumpilstilstkin");
     }
 
     @Override
@@ -90,5 +101,10 @@ public class MainActivity extends MvpAppCompatActivity
     @Override
     public void startLoad() {
 
+    }
+
+    @Override
+    public void showUserReps(List<UserRep> userRepList) {
+        //TODO:
     }
 }

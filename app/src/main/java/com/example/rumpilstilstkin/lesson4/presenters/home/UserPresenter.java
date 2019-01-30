@@ -1,6 +1,8 @@
 package com.example.rumpilstilstkin.lesson4.presenters.home;
 
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.rumpilstilstkin.lesson4.data.models.GithubUser;
@@ -21,8 +23,9 @@ public class UserPresenter extends MvpPresenter<UserView>
     }
 
     public void loadDate() {
+        Log.d("Dto", "UserPresenter:loadData: ");
         getViewState().showLoading();
-        NetApiClient.getInstance().getUser("rumpilstilstkin")
+        NetApiClient.getInstance().getUser("rumpilstilstkin") //Первый пункт домашнего задания, мы же уже загружаем одного пользователя?
                 .subscribe(this);
     }
 
@@ -33,6 +36,7 @@ public class UserPresenter extends MvpPresenter<UserView>
 
     @Override
     public void onNext(GithubUser githubUser) {
+        Log.d("Dto", "UserPresenter:onNext: ");
         getViewState().showImage(githubUser.getAvatar());
         getViewState().showName(githubUser.getLogin());
     }
